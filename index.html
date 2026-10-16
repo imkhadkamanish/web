@@ -25,12 +25,19 @@
             heading: ['"Plus Jakarta Sans"', 'sans-serif'],
           },
           colors: {
-            brand: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              400: '#34d399',
-              500: '#10b981',
-              600: '#059669',
+            // Chiya Mantra Brand Color
+            chiyamantra: {
+              DEFAULT: '#CF8D0A',
+              50: '#fdf9ee',
+              100: '#fbf0d5',
+              200: '#f6dea8',
+              300: '#f0c774',
+              400: '#e8af42',
+              500: '#CF8D0A',
+              600: '#b27306',
+              700: '#8e5509',
+              800: '#75430e',
+              900: '#643810',
             },
             stone: {
               850: '#1c1917',
@@ -56,10 +63,17 @@
       border-radius: 9999px;
     }
     .touch-ripple {
-      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .touch-ripple:active {
       transform: scale(0.985);
+    }
+    /* Logo styling helper */
+    .brand-logo-img {
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+    }
+    .dark .brand-logo-img {
+      filter: brightness(1.15) contrast(1.05) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
     }
   </style>
 </head>
@@ -67,26 +81,25 @@
 
   <!-- Interactive Toast Notification -->
   <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 transform -translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-neutral-900/90 dark:bg-neutral-100/95 backdrop-blur-md text-neutral-100 dark:text-neutral-900 shadow-2xl border border-neutral-700/40 dark:border-neutral-300/40 text-xs font-medium tracking-wide">
-    <i id="toastIcon" class="fa-solid fa-check text-emerald-400 dark:text-emerald-600"></i>
+    <i id="toastIcon" class="fa-solid fa-check text-[#CF8D0A]"></i>
     <span id="toastMsg">Action completed successfully</span>
   </div>
 
   <!-- Header Bar -->
   <header class="w-full max-w-2xl mx-auto flex items-center justify-between py-3 mb-6">
-    <a href="#" class="flex items-center gap-2.5 group">
-      <div class="w-9 h-9 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-heading font-extrabold text-sm flex items-center justify-center border border-emerald-500/20">
-        KM
-      </div>
-      <div>
-        <span class="text-sm font-bold text-neutral-900 dark:text-white tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Khadka Manish</span>
-        <span class="block text-[11px] text-neutral-500 dark:text-neutral-400">Co-Founder, Chiya Mantra</span>
-      </div>
+    <!-- Header Logo Image (all texts removed) -->
+    <a href="#" class="inline-flex items-center group py-1" aria-label="Khadka Manish Home">
+      <img src="https://raw.githubusercontent.com/imkhadkamanish/web/main/KhadkaManish.png" 
+           alt="Khadka Manish Logo" 
+           class="brand-logo-img h-8 sm:h-9 w-auto max-w-[190px] sm:max-w-[230px] object-contain transition-transform group-hover:scale-[1.02]"
+           loading="eager"
+           onerror="this.onerror=null; this.src='https://placehold.co/180x40/171615/CF8D0A?text=Khadka+Manish';">
     </a>
 
     <div class="flex items-center gap-2">
-      <!-- Status Badge -->
-      <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-[11px] font-medium">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      <!-- Status Badge with Chiya Mantra Color Highlight -->
+      <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-[#CF8D0A]/10 text-[#CF8D0A] border border-[#CF8D0A]/20 text-[11px] font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#CF8D0A] animate-pulse"></span>
         <span>Open for Inquiries</span>
       </div>
 
@@ -102,28 +115,43 @@
 
     <!-- Profile & Intro Card -->
     <section class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-stone-900/90 border border-neutral-200/80 dark:border-neutral-800/80 shadow-sm relative overflow-hidden">
-      <div class="absolute -right-16 -top-16 w-44 h-44 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <!-- Glow background accent in Chiya Mantra gold -->
+      <div class="absolute -right-16 -top-16 w-48 h-48 bg-[#CF8D0A]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 relative z-10">
         <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-2xl bg-neutral-100 dark:bg-stone-800 border border-neutral-200 dark:border-neutral-700/80 flex items-center justify-center text-xl font-heading font-bold text-neutral-900 dark:text-neutral-100 shadow-inner">
-            KM
+          <!-- Profile Picture: 1:1 Ratio Square with Rounded Corners -->
+          <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-neutral-200 dark:border-neutral-700/80 bg-neutral-100 dark:bg-stone-800 shadow-md shrink-0">
+            <img src="https://raw.githubusercontent.com/imkhadkamanish/web/main/Polished%20Outdoor%20Executive%20Portrait.png" 
+                 alt="Khadka Manish Profile" 
+                 class="w-full h-full object-cover object-top"
+                 loading="eager"
+                 onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/imkhadkamanish/web/main/PHOTO-1704.jpg';">
           </div>
+
           <div>
-            <div class="flex items-center gap-2">
+            <!-- Name + Verified Blue Tick -->
+            <div class="flex items-center gap-1.5 flex-wrap">
               <h1 class="text-xl sm:text-2xl font-extrabold text-neutral-950 dark:text-white font-heading tracking-tight">
                 Khadka Manish
               </h1>
-              <i class="fa-solid fa-circle-check text-emerald-500 text-xs" title="Verified Profile"></i>
+              <!-- Official Verified Blue Badge SVG -->
+              <span class="inline-flex items-center text-sky-500" title="Verified Profile" aria-label="Verified Profile">
+                <svg class="w-5 h-5 drop-shadow-sm fill-current text-sky-500" viewBox="0 0 24 24">
+                  <path d="M10.52 2.45a1.996 1.996 0 0 1 2.96 0l1.08 1.18c.41.44.98.69 1.58.69h1.6c1.1 0 2 .9 2 2v1.6c0 .6.25 1.17.69 1.58l1.18 1.08c.83.76.83 2.05 0 2.81l-1.18 1.08c-.44.41-.69.98-.69 1.58v1.6c0 1.1-.9 2-2 2h-1.6c-.6 0-1.17.25-1.58.69l-1.08 1.18a1.996 1.996 0 0 1-2.96 0l-1.08-1.18c-.41-.44-.98-.69-1.58-.69H7.85c-1.1 0-2-.9-2-2v-1.6c0-.6-.25-1.17-.69-1.58l-1.18-1.08a1.996 1.996 0 0 1 0-2.81l1.18-1.08c.44-.41.69-.98.69-1.58v-1.6c0-1.1.9-2 2-2h1.6c.6 0 1.17-.25 1.58-.69l1.08-1.18zM9.7 11.29l-1.41 1.42 3.42 3.42 6.36-6.36-1.41-1.42-4.95 4.95-2.01-2.01z" fill="#0284c7"/>
+                  <path d="M9.7 11.29l-1.41 1.42 3.42 3.42 6.36-6.36-1.41-1.42-4.95 4.95-2.01-2.01z" fill="#ffffff"/>
+                </svg>
+              </span>
             </div>
             
-            <!-- Clickable Venture Link with External Hint -->
-            <p class="text-xs sm:text-sm font-semibold text-neutral-600 dark:text-neutral-300 mt-0.5">
-              Co-Founder, 
+            <!-- Co-Founder, Chiya Mantra (#CF8D0A styling) -->
+            <p class="text-xs sm:text-sm font-semibold text-neutral-600 dark:text-neutral-300 mt-1 flex items-center gap-1.5 flex-wrap">
+              <span>Co-Founder,</span> 
               <a href="https://chiyamantra.com.np" 
                  target="_blank" 
                  rel="noopener noreferrer" 
-                 class="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:underline hover:text-emerald-500 font-bold transition-colors">
+                 style="color: #CF8D0A;"
+                 class="inline-flex items-center gap-1 font-bold hover:underline underline-offset-2 transition-all">
                 Chiya Mantra
                 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
@@ -134,49 +162,52 @@
         <!-- Quick Connect Chips -->
         <div class="flex items-center gap-2 w-full sm:w-auto">
           <button onclick="downloadVCard()" 
-                  class="touch-ripple flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-neutral-100 dark:bg-stone-800 text-neutral-800 dark:text-neutral-200 text-xs font-semibold hover:bg-neutral-200 dark:hover:bg-stone-750 border border-neutral-200 dark:border-neutral-700/70 transition-colors">
+                  class="touch-ripple flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-neutral-100 dark:bg-stone-800 text-neutral-800 dark:text-neutral-200 text-xs font-semibold hover:bg-neutral-200 dark:hover:bg-stone-700 border border-neutral-200 dark:border-neutral-700/70 transition-colors">
             <i class="fa-solid fa-address-card text-neutral-500 dark:text-neutral-400"></i>
             <span>Save Contact</span>
           </button>
+          
           <a href="https://wa.me/imkhadkamanish" 
              target="_blank" 
              rel="noopener noreferrer"
-             class="touch-ripple flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors shadow-sm">
+             style="background-color: #CF8D0A;"
+             class="touch-ripple flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-white text-xs font-semibold hover:opacity-95 transition-all shadow-sm">
             <i class="fa-brands fa-whatsapp text-sm"></i>
             <span>WhatsApp</span>
           </a>
         </div>
       </div>
 
+      <!-- Bio / Summary -->
       <p class="mt-5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
         Passionate about building scalable youth-centric ventures, community cafe culture, and modern brand growth. Whether you want to discuss business opportunities, collaborate on 
-        <a href="https://chiyamantra.com.np" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:underline font-medium">Chiya Mantra</a> 
+        <a href="https://chiyamantra.com.np" target="_blank" rel="noopener noreferrer" style="color: #CF8D0A;" class="hover:underline font-semibold">Chiya Mantra</a> 
         in 
-        <a href="https://maps.app.goo.gl/wsULXqgpQ22eTd5E7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-neutral-700 dark:text-neutral-200 hover:text-emerald-500 font-medium underline underline-offset-2 transition-colors">
+        <a href="https://maps.app.goo.gl/wsULXqgpQ22eTd5E7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-neutral-700 dark:text-neutral-200 hover:text-[#CF8D0A] font-medium underline underline-offset-2 transition-colors">
           <i class="fa-solid fa-location-dot text-rose-500 text-[11px]"></i>Gaighat, Nepal
         </a>, 
         or connect professionally, feel free to reach out.
       </p>
 
-      <!-- Channels Bar -->
+      <!-- Channels Bar: "Find me on" -->
       <div class="mt-5 pt-5 border-t border-neutral-100 dark:border-neutral-800/80">
         <div class="flex items-center justify-between p-3 rounded-2xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200/70 dark:border-neutral-800/80">
-          <span class="text-xs font-medium text-neutral-500 dark:text-neutral-400 pl-1">Direct Channels</span>
+          <span class="text-xs font-semibold text-neutral-600 dark:text-neutral-300 pl-1 tracking-tight">Find me on</span>
           
-          <div class="flex items-center gap-2">
-            <!-- Mail Icon Button: info@khadkamanish.com.np cc: khadkamanishhh@gmail.com -->
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <!-- Mail Icon Button: redirect with cc -->
             <a href="mailto:info@khadkamanish.com.np?cc=khadkamanishhh@gmail.com&subject=Inquiry%20via%20khadkamanish.com.np" 
-               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-emerald-500 hover:bg-emerald-500/10 dark:hover:bg-emerald-500/20 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple"
-               title="Write Email (info@khadkamanish.com.np)">
+               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-[#CF8D0A] hover:bg-[#CF8D0A]/10 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple"
+               title="Write Mail (info@khadkamanish.com.np)">
               <i class="fa-regular fa-envelope text-sm"></i>
             </a>
             
-            <!-- WhatsApp Icon Button -->
+            <!-- WhatsApp -->
             <a href="https://wa.me/imkhadkamanish" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-emerald-500 hover:bg-emerald-500/10 dark:hover:bg-emerald-500/20 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple"
-               title="WhatsApp">
+               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-emerald-500 hover:bg-emerald-500/10 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple"
+               title="WhatsApp (wa.me/imkhadkamanish)">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
 
@@ -185,7 +216,7 @@
                target="_blank" 
                rel="noopener noreferrer" 
                class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-blue-500 hover:bg-blue-500/10 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple" 
-               title="Facebook">
+               title="Facebook (facebook.com/Me.MNS)">
               <i class="fa-brands fa-facebook text-sm"></i>
             </a>
 
@@ -194,7 +225,7 @@
                target="_blank" 
                rel="noopener noreferrer" 
                class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-pink-500 hover:bg-pink-500/10 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple" 
-               title="Instagram">
+               title="Instagram (instagram.com/imkhadkamanish)">
               <i class="fa-brands fa-instagram text-sm"></i>
             </a>
 
@@ -202,8 +233,8 @@
             <a href="https://tiktok.com/@imkhadkamanish" 
                target="_blank" 
                rel="noopener noreferrer" 
-               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/60 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple" 
-               title="TikTok">
+               class="w-9 h-9 rounded-xl flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-950 dark:hover:text-white hover:bg-neutral-200/60 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 transition-all touch-ripple" 
+               title="TikTok (tiktok.com/@imkhadkamanish)">
               <i class="fa-brands fa-tiktok text-sm"></i>
             </a>
           </div>
@@ -212,9 +243,9 @@
     </section>
 
     <!-- Dedicated 'Get In Touch' Contact Section -->
-    <section class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-stone-900/90 border border-neutral-200/80 dark:border-neutral-800/80 shadow-sm relative">
+    <section class="p-6 sm:p-8 rounded-3xl bg-white dark:bg-stone-900/90 border border-neutral-200/80 dark:border-neutral-800/80 shadow-sm relative overflow-hidden">
       <div class="mb-6">
-        <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 mb-2">
+        <div class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#CF8D0A] px-2.5 py-1 rounded-full bg-[#CF8D0A]/10 border border-[#CF8D0A]/20 mb-2">
           <i class="fa-solid fa-paper-plane text-[10px]"></i> Get in Touch With Me
         </div>
         <h2 class="text-xl sm:text-2xl font-bold font-heading text-neutral-950 dark:text-white tracking-tight">
@@ -239,7 +270,7 @@
                 <i class="fa-regular fa-user"></i>
               </span>
               <input type="text" id="fullName" required placeholder="e.g. Aarav Sharma" 
-                     class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all">
+                     class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#CF8D0A]/40 focus:border-[#CF8D0A] transition-all">
             </div>
           </div>
 
@@ -252,7 +283,7 @@
                 <i class="fa-regular fa-envelope"></i>
               </span>
               <input type="email" id="emailAddr" required placeholder="name@domain.com" 
-                     class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all">
+                     class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#CF8D0A]/40 focus:border-[#CF8D0A] transition-all">
             </div>
           </div>
         </div>
@@ -267,7 +298,7 @@
               <i class="fa-solid fa-phone"></i>
             </span>
             <input type="tel" id="phoneNumber" placeholder="+977 98..." 
-                   class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all">
+                   class="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#CF8D0A]/40 focus:border-[#CF8D0A] transition-all">
           </div>
         </div>
 
@@ -277,10 +308,10 @@
             Your Message <span class="text-rose-500">*</span>
           </label>
           <textarea id="messageBody" rows="4" required placeholder="Write your message or inquiry here..." 
-                    class="w-full p-3.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 transition-all resize-y"></textarea>
+                    class="w-full p-3.5 rounded-xl bg-neutral-50 dark:bg-stone-950 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#CF8D0A]/40 focus:border-[#CF8D0A] transition-all resize-y"></textarea>
         </div>
 
-        <!-- Action Dispatch Buttons (WhatsApp & Mail Icon/Button) -->
+        <!-- Action Dispatch Buttons (WhatsApp & Mail) -->
         <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
           
           <!-- Primary: Direct WhatsApp Dispatch -->
@@ -292,7 +323,8 @@
 
           <!-- Secondary: Email Dispatch with Mail Icon and CC config -->
           <button type="submit" 
-                  class="touch-ripple w-full sm:flex-1 py-3 px-4 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-neutral-950 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+                  style="background-color: #CF8D0A;"
+                  class="touch-ripple w-full sm:flex-1 py-3 px-4 rounded-xl hover:opacity-95 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md">
             <i class="fa-regular fa-envelope text-sm"></i>
             <span>Send via Email</span>
           </button>
@@ -303,7 +335,7 @@
 
   </main>
 
-  <!-- Clean Footer -->
+  <!-- Clean Footer (No chiya mantra, no gaighat) -->
   <footer class="w-full max-w-2xl mx-auto pt-8 pb-4 text-center">
     <p class="text-[11px] text-neutral-400 dark:text-neutral-500">
       &copy; <span id="currentYear"></span> Khadka Manish. All rights reserved.
@@ -348,7 +380,7 @@
 
       toastMsg.textContent = message;
       toastIcon.className = isSuccess 
-        ? "fa-solid fa-check text-emerald-400 dark:text-emerald-500" 
+        ? "fa-solid fa-check text-[#CF8D0A]" 
         : "fa-solid fa-circle-exclamation text-rose-500";
 
       toast.classList.remove('-translate-y-16', 'opacity-0');
